@@ -10,3 +10,7 @@ Run gulp to launch project in your default browser
 
 ## Deployment to Github Pages
 
+Run gulp to build everything.
+Once it completes, run gulp deploy.
+
+You should then be able to hit https://petertbernhardt.github.io/restCountriesApp/ and see the app.
