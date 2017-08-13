@@ -55,7 +55,10 @@ gulp.task('less', function () {
 });
 
 gulp.task('compileJs', function () {
-   return gulp.src('src/app/**/*.js')
+   return gulp.src([
+            'src/index.js',
+            'src/app/**/*.js'
+        ])
         .pipe(concat('main.js'))
         .pipe(gulp.dest('src/js'))
         .pipe(browserSync.stream({stream:true}))
@@ -80,6 +83,7 @@ gulp.task('watch', function () {
         gulp.watch('src/js/**/*.js', ['compileJs'], reload);
         gulp.watch('src/**/*.html', ['html'], reload);
         gulp.watch('src/**/*.html').on('change', reload);
+        gulp.watch('src/**/*.js').on('change', reload);
         gulp.slurped = true; //step 3
     }
 });
