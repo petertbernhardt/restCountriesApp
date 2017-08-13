@@ -1,0 +1,22 @@
+{
+  "name": "rest-countries-app",
+  "version": "1.0.0",
+  "description": "AngularJS (1.X) app that uses the https://restcountries.eu/ API to display information about countries.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petertbernhardt/restCountriesApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petertbernhardt/restCountriesApp/issues"
+  },
+  "homepage": "https://github.com/petertbernhardt/restCountriesApp#readme",
+  "devDependencies": {
+    "angular": "^1.6.5",
+    "gulp": "^3.9.1"
+  }
+}
