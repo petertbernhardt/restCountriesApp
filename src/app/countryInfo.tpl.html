@@ -24,8 +24,10 @@
 	<div class="country-info-item">
 		<strong>Translations</strong>
 		<ul>
-			<li ng-repeat="translation in $ctrl.countryInfo.translations">
-				{{ translation }}
+			<li ng-repeat="translationObject in $ctrl.countryInfo.translations">
+				Code: {{ translationObject.code | uppercase }}
+				<br/>
+				Translation: {{ translationObject.translation }}
 			</li>
 		</ul>
 	</div>
@@ -35,19 +37,12 @@
 	</div>
 	<div class="country-info-item">
 		<strong>Population</strong>
-		<p>{{ $ctrl.countryInfo.population }}</p>
+		<p>{{ $ctrl.countryInfo.population | number }}</p>
 	</div>
 	<div class="country-info-item">
 		<strong>Flag</strong>
-		<img ng-src="$ctrl.countryInfo.flag" onerror="this.src='fallback.png'">
+		<img ng-src="{{ $ctrl.countryInfo.flag }}" onerror="this.src='fallback.png'">
 	</div>
-    <!-- <ul>
-        <li ng-repeat="info in $ctrl.countryInfo">
-            {{ info.name }}
-            <br/>
-            {{ info.data }}
-        </li>
-    </ul> -->
 </div>
 <div class="country-info-container" ng-show="$ctrl.showError">
 	<p>Error fetching results. Invalid input or server error.</p>
