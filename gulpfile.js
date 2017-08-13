@@ -12,7 +12,7 @@ var gutil     = require('gutil');
 var historyApiFallback = require('connect-history-api-fallback');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
-var beep = require('beepbeep');
+var deploy = require('gulp-gh-pages');
 var gulp      = require('gulp');
 
 var runSequence = require('run-sequence');
@@ -41,12 +41,26 @@ gulp.task('clean', function (done) {
     });
 });
 
+gulp.task('copyAngular', function() {
+    return gulp.src('src/js/angular.min.js')
+        .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('copyIndexJs', function() {
+    return gulp.src('src/js/main.js')
+        .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('copyImage', function() {
+    return gulp.src('src/fallback.png')
+        .pipe(gulp.dest('dist/'));
+});
+
 // Watch less files for changes and reload on changes
-gulp.task('less', function () {
+gulp.task('less', ['copyImage'], function () {
     return gulp.src('src/less/main.less')
     .pipe(less())
     .pipe(gulp.dest('src/css'))
-    .pipe(rename({suffix: '.min'}))
     .pipe(cssnano())
     .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.stream({stream:true}))
@@ -54,7 +68,7 @@ gulp.task('less', function () {
     .on('error', gutil.log);
 });
 
-gulp.task('compileJs', function () {
+gulp.task('compileJs', ['copyIndexJs', 'copyAngular'], function () {
    return gulp.src([
             'src/index.js',
             'src/app/**/*.js'
@@ -104,12 +118,6 @@ gulp.task('serve', ['compileJs', 'html', 'less'], function () {
 // | Main tasks                                                        |
 // ---------------------------------------------------------------------
 
-gulp.task('build', function (done) {
-    runSequence(
-        // any dependency functions first
-    done);
-});
-
 // Static server
 gulp.task('browser-sync', function() {
     browserSync.init({
@@ -119,6 +127,11 @@ gulp.task('browser-sync', function() {
             browser: "google chrome"
         }
     });
+});
+
+gulp.task('deploy', function() {
+    return gulp.src('dist/**/*')
+        .pipe(deploy());
 });
 
 gulp.task('default', ['clean'], function(){

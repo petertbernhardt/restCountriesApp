@@ -7,3 +7,6 @@ Simple app that uses the API from https://restcountries.eu to allow users to sea
 Run npm install
 
 Run gulp to launch project in your default browser
+
+## Deployment to Github Pages
+
