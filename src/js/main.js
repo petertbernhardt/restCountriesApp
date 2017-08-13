@@ -1,21 +1,23 @@
 var app = angular.module("restApp", []);
-app.controller("MainController", function($scope, CountryService) {
-	$scope.message = 'Hello!';
+app.component("countryInfo", {
+	templateUrl: 'app/countryInfo.tpl.html',
+	controller: "countryInfoController"
+}).controller("countryInfoController", function(CountryService) {
+	var ctrl = this;
 
-	$scope.showCountryInfo = false;
-	$scope.countryInfo = []; // array of objects for the country data
+	ctrl.showCountryInfo = false;
+	ctrl.countryInfo = []; // array of objects for the country data
 
-	$scope.search = function() {
+	ctrl.search = function() {
 		// Hide country info
-		$scope.showCountryInfo = false;
+		ctrl.showCountryInfo = false;
 		// take the search box's value
 		// call CountryService.search and pass it the value
 		// when data is received, display the search results
-		console.log('Value: ', $scope.input);
-		CountryService.search($scope.input).then(function(response) {
-			$scope.data = response.data[0];
-			$scope.countryInfo = CountryService.populateCountryInfo($scope.data);
-			$scope.showCountryInfo = true;
+		CountryService.search(ctrl.input).then(function(response) {
+			ctrl.data = response.data[0];
+			ctrl.countryInfo = CountryService.populateCountryInfo(ctrl.data);
+			ctrl.showCountryInfo = true;
 		});
 	};
 });
@@ -46,3 +48,6 @@ app.service('CountryService', ['$http', function($http) {
 		return countryObjectArray;
 	};
 }]);
+app.controller("MainController", function($scope) {
+	$scope.message = 'Hello!';
+});

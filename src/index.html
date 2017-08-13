@@ -20,18 +20,7 @@
 
             {{ message }}
 
-            <input type="text" ng-model="input" placeholder="Search for countries...">
-            <button type="button" ng-click="search()">Search</button>
-
-            <div class="country-info-container" ng-show="showCountryInfo">
-                <ul>
-                    <li ng-repeat="info in countryInfo">
-                        {{ info.name }}
-                        <br/>
-                        {{ info.data }}
-                    </li>
-                </ul>
-            </div>
+            <country-info></country-info>
         </div>
         <script src="js/main.js"></script>
     </body>

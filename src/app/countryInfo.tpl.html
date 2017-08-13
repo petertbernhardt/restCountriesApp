@@ -1,0 +1,49 @@
+<input type="text" ng-model="$ctrl.input" placeholder="Search for countries...">
+<button type="button" ng-click="$ctrl.search()">Search</button>
+<h3>I'm a country info component!</h3>
+<!-- 
+    I should only show the following data:
+        - Native name
+            - nativeName
+        - Provided translations for the country name
+            - translations
+        - Capital
+            - capital
+        - Population
+            - population 
+        - Country's flag image (if available)
+            - flag (as an svg)
+ -->
+<div class="country-info-container" ng-show="$ctrl.showCountryInfo">
+	<div class="country-info-item">
+		<strong>Native Name</strong>
+		<p>{{ $ctrl.countryInfo.nativeName }}</p>
+	</div>
+	<div class="country-info-item">
+		<strong>Translations</strong>
+		<ul>
+			<li ng-repeat="translation in $ctrl.countryInfo.translations">
+				{{ translation }}
+			</li>
+		</ul>
+	</div>
+	<div class="country-info-item">
+		<strong>Capital</strong>
+		<p>{{ $ctrl.countryInfo.capital }}</p>
+	</div>
+	<div class="country-info-item">
+		<strong>Population</strong>
+		<p>{{ $ctrl.countryInfo.population }}</p>
+	</div>
+	<div class="country-info-item">
+		<strong>Flag</strong>
+		<img ng-src="$ctrl.countryInfo.flag" onerror="this.src='fallback.png'">
+	</div>
+    <!-- <ul>
+        <li ng-repeat="info in $ctrl.countryInfo">
+            {{ info.name }}
+            <br/>
+            {{ info.data }}
+        </li>
+    </ul> -->
+</div>
