@@ -40,7 +40,7 @@ app.service('CountryService', ['$http', function($http) {
 	this.populateCountryInfo = function(data) {
 		var countryObjectArray = {};
 		var keys = Object.keys(data);
-		var countryInfoKeys = ['nativeName', 'translations', 'capital', 'population', 'flag']
+		var countryInfoKeys = ['name', 'nativeName', 'translations', 'capital', 'population', 'flag']
 		// loop through keys
 		// grab data for nativeName, translations, capital, population, and flag
 		// create an object with the key as a name property and the element as a data property

@@ -1,8 +1,7 @@
-<form ng-submit="$ctrl.search()">
+<form class="country-search-form" ng-submit="$ctrl.search()">
 	<input type="text" ng-model="$ctrl.input" placeholder="Search for countries...">
 	<button type="submit">Search</button>
 </form>
-<h3>I'm a country info component!</h3>
 <!-- 
     I should only show the following data:
         - Native name
@@ -16,32 +15,37 @@
         - Country's flag image (if available)
             - flag (as an svg)
  -->
-<div class="country-info-container" ng-show="$ctrl.showCountryInfo">
-	<div class="country-info-item">
-		<strong>Native Name</strong>
-		<p>{{ $ctrl.countryInfo.nativeName }}</p>
+<div class="country-info-container card text-center" ng-show="$ctrl.showCountryInfo">
+	<h3 class="card-header">
+		{{ $ctrl.countryInfo.name }}
+	</h3>
+	<img class="card-img-top" 
+		ng-src="{{ $ctrl.countryInfo.flag }}" 
+		onerror="this.src='fallback.png'"
+		alt="Flag of {{ $ctrl.countryInfo.name }}">
+	<div class="card-block">
+		<h4 class="card-title">
+			Native Name: {{ $ctrl.countryInfo.nativeName }}
+		</h4>
 	</div>
-	<div class="country-info-item">
-		<strong>Translations</strong>
-		<ul>
-			<li ng-repeat="translationObject in $ctrl.countryInfo.translations">
+	<div class="card-block">
+		<h4 class="card-text country-info-item">
+			Capital: {{ $ctrl.countryInfo.capital }}
+		</h4>
+		<h4 class="card-text country-info-item">
+			Population: {{ $ctrl.countryInfo.population | number }} people
+		</h4>
+	</div>
+	<div class="card-block translations">
+		<h4 class="card-text">Translations</h4>
+		<div class="row">
+			<div ng-repeat="translationObject in $ctrl.countryInfo.translations"
+				class="col-sm-6 col-md-4">
 				Code: {{ translationObject.code | uppercase }}
 				<br/>
 				Translation: {{ translationObject.translation }}
-			</li>
-		</ul>
-	</div>
-	<div class="country-info-item">
-		<strong>Capital</strong>
-		<p>{{ $ctrl.countryInfo.capital }}</p>
-	</div>
-	<div class="country-info-item">
-		<strong>Population</strong>
-		<p>{{ $ctrl.countryInfo.population | number }}</p>
-	</div>
-	<div class="country-info-item">
-		<strong>Flag</strong>
-		<img ng-src="{{ $ctrl.countryInfo.flag }}" onerror="this.src='fallback.png'">
+			</div>
+		</div>
 	</div>
 </div>
 <div class="country-info-container" ng-show="$ctrl.showError">
