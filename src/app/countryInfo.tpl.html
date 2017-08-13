@@ -1,20 +1,16 @@
-<form class="country-search-form" ng-submit="$ctrl.search()">
-	<input type="text" ng-model="$ctrl.input" placeholder="Search for countries...">
-	<button type="submit">Search</button>
-</form>
-<!-- 
-    I should only show the following data:
-        - Native name
-            - nativeName
-        - Provided translations for the country name
-            - translations
-        - Capital
-            - capital
-        - Population
-            - population 
-        - Country's flag image (if available)
-            - flag (as an svg)
- -->
+<div class="country-search-form-container">
+	<form class="country-search-form form-inline" ng-submit="$ctrl.search()">
+		<div class="form-group col-md-8">
+			<input class="form-control col-md-12" 
+				type="text" 
+				ng-model="$ctrl.input" 
+				placeholder="Search for countries...">
+		</div>
+		<button class="btn btn-primary col-md-4" 
+			type="submit"
+			ng-disabled="!$ctrl.input">Search</button>
+	</form>
+</div>
 <div class="country-info-container card text-center" ng-show="$ctrl.showCountryInfo">
 	<h3 class="card-header">
 		{{ $ctrl.countryInfo.name }}
