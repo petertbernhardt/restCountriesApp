@@ -1,38 +1,30 @@
 <!doctype html>
-<html class="no-js" lang="en" ng-app="myApp" ng-controller="MainController">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title ng-bind="pageTitle"></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" ng-app="restApp" ng-controller="MainController">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title ng-bind="pageTitle"></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" async>
-    <link rel="stylesheet" href="css/main.css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" async>
+        <link rel="stylesheet" href="css/main.css">
 
-    <!-- Need this component for removing the # -->
-    <base href="/">
+        <!-- Need this component for removing the # -->
+        <base href="/">
+        <script src="js/angular.js"></script>
+    </head>
+    <body>
+        <div id="wrap" class="wrap">
+            <h1>REST Countries App</h1>
 
-    <script src="js/index.bundled.js"></script>
-</head>
-<body>
-    <!--[if lt IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+            {{ message }}
 
-    <!-- Add your site or application content here -->
+            <input type="text" ng-model="search" placeholder="Search for countries...">
+            <hr />
 
-<div id="wrap" class="wrap">
-    <h1>REST Countries App</h1>
-
-
-    <div ui-view class="wrapper"></div>
-
-    <!-- this is cool -->
-
-</div>
-
-<script src="js/main.js"></script>
-
-</body>
+            <div ui-view class="wrapper"></div>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
 </html>

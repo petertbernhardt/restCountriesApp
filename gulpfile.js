@@ -33,9 +33,12 @@ var paths = {
 // | Minor tasks                                                        |
 // ---------------------------------------------------------------------
 
-gulp.task('js', function () {
-    // TODO: add to this later
-    return;
+gulp.task('clean', function (done) {
+    require('del')([
+        'dist/'
+    ]).then(function () {
+        done();
+    });
 });
 
 // Watch less files for changes and reload on changes
@@ -52,7 +55,12 @@ gulp.task('less', function () {
 });
 
 gulp.task('compileJs', function () {
-   // TODO: write this later
+   return gulp.src('src/app/**/*.js')
+        .pipe(concat('main.js'))
+        .pipe(gulp.dest('src/js'))
+        .pipe(browserSync.stream({stream:true}))
+        .pipe(notify({ message: 'compileJs task complete'}))
+        .on('error', gutil.log);
 });
 
 // Watch html for changes and reload on changes
@@ -69,6 +77,7 @@ gulp.slurped = false; //step 1
 gulp.task('watch', function () {
     if(!gulp.slurped){ //step 2
         gulp.watch('src/less/*.less', ['less'], reload);
+        gulp.watch('src/js/**/*.js', ['compileJs'], reload);
         gulp.watch('src/**/*.html', ['html'], reload);
         gulp.watch('src/**/*.html').on('change', reload);
         gulp.slurped = true; //step 3
@@ -76,7 +85,7 @@ gulp.task('watch', function () {
 });
 
 // Serve a site after running multiple tasks
-gulp.task('serve', ['js', 'html', 'less'], function () {
+gulp.task('serve', ['compileJs', 'html', 'less'], function () {
      browserSync.init({
         server: {
             baseDir: "src/.",
@@ -108,6 +117,6 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('default', function(){
+gulp.task('default', ['clean'], function(){
     gulp.start('serve','watch', reload);
 });
