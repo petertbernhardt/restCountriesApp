@@ -34,6 +34,7 @@ var paths = {
 // ---------------------------------------------------------------------
 
 gulp.task('js', function () {
+    // TODO: add to this later
     return;
 });
 
@@ -51,7 +52,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('compileJs', function () {
-   //
+   // TODO: write this later
 });
 
 // Watch html for changes and reload on changes
