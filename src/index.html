@@ -23,7 +23,15 @@
             <input type="text" ng-model="input" placeholder="Search for countries...">
             <button type="button" ng-click="search()">Search</button>
 
-            <div ui-view class="wrapper"></div>
+            <div class="country-info-container" ng-show="showCountryInfo">
+                <ul>
+                    <li ng-repeat="info in countryInfo">
+                        {{ info.name }}
+                        <br/>
+                        {{ info.data }}
+                    </li>
+                </ul>
+            </div>
         </div>
         <script src="js/main.js"></script>
     </body>
