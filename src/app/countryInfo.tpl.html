@@ -1,5 +1,7 @@
-<input type="text" ng-model="$ctrl.input" placeholder="Search for countries...">
-<button type="button" ng-click="$ctrl.search()">Search</button>
+<form ng-submit="$ctrl.search()">
+	<input type="text" ng-model="$ctrl.input" placeholder="Search for countries...">
+	<button type="submit">Search</button>
+</form>
 <h3>I'm a country info component!</h3>
 <!-- 
     I should only show the following data:
@@ -46,4 +48,7 @@
             {{ info.data }}
         </li>
     </ul> -->
+</div>
+<div class="country-info-container" ng-show="$ctrl.showError">
+	<p>Error fetching results. Invalid input or server error.</p>
 </div>
